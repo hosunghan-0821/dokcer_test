@@ -17,7 +17,7 @@ node {
              step([$class: 'WsCleanup'])
         }
        stage('clone') {
-            git branch: 'main', url:'https://github.com/hosunghan-0821/dokcer_test.git'
+            git branch: ${branch}, url:'https://github.com/hosunghan-0821/dokcer_test.git'
         }
 
         dir("${env.WORKSPACE}") {
