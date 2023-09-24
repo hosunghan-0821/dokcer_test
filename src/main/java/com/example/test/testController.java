@@ -10,6 +10,6 @@ public class testController {
 
     @GetMapping("/test1")
     public String test() {
-        return "docker_multibranch";
+        return "test_one_more";
     }
 }
