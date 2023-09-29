@@ -10,6 +10,6 @@ public class testController {
 
     @GetMapping("/test1")
     public String test() {
-        return "test_!234";
+        return "test_!12344";
     }
 }
