@@ -24,11 +24,11 @@ node {
         }
         stage('settings'){
              withCredentials([file(credentialsId: "properties", variable: 'CREDENTIALS_FILE_PATH')]) {
-                    def credentialsContent = readFile env.CREDENTIALS_FILE_PATH
+                    def credentials_content = readFile env.CREDENTIALS_FILE_PATH
+                    def properties_file_path = "${env.WORKSPACE}/src/main/resources"
 
-                    // Credentials 파일의 내용을 출력하거나 원하는 작업을 수행할 수 있습니다.
-                    echo "Credentials File Content: ${credentialsContent}"
-                    return;
+                    writeFile file: properties_file_path, text: credentials_content
+
                 }
         }
 
