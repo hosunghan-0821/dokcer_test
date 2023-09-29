@@ -6,12 +6,11 @@ on:
       - closed
 
 jobs:
-  if_merged:
+  pr_merged:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo The PR was merged
-
+        curl -X POST -H "Content-Type: application/json" http://3.36.49.232:8080/multibranch-webhook-trigger/invoke?token=test-token
 
  
