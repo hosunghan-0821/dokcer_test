@@ -23,11 +23,8 @@ node {
             git branch: branch, url:'https://github.com/hosunghan-0821/dokcer_test.git'
         }
         stage('settings'){
-             withCredentials([file(credentialsId: 'properties',variable: 'application.properties')]) {
-                        script {
-                            sh "cp ${application.properties} ${env.WORKSPACE}/src/main/resources"
-                        }
-                    }
+                MY_CREDENTIALS_FILE = credentials('properties')
+                sh "cp ${env.MY_CREDENTIALS_FILE} ${env.WORKSPACE}/src/main/resources"
         }
 
         dir("${env.WORKSPACE}") {
