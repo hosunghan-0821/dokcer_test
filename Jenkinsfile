@@ -25,7 +25,7 @@ node {
 
         dir("${env.WORKSPACE}") {
             stage ('Gradle Build') {
-                sh 'cp "${env.JENKINS_HOME}"/application.yml "${env.WORKSPACE}"/src/main/resources'
+                sh 'cp $env.JENKINS_HOME/application.yml $env.WORKSPACE/src/main/resources'
                 sh 'chmod +x gradlew'
                 sh './gradlew clean build'
             }
