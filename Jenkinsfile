@@ -8,8 +8,10 @@ def getCommitType(commit) {
 node {
     def vars = checkout scm
     def prj_type = getCommitType(vars.GIT_COMMIT).substring(1,3)
+
     def branch = env.BRANCH_NAME
     echo "Branch: ${branch}"
+    echo "Jenkins home: ${env.JENKINS_HOME}"
 
     if(prj_type=="BE" && branch=="dev"){
 
