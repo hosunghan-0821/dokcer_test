@@ -25,7 +25,12 @@ node {
 
         dir("${env.WORKSPACE}") {
             stage ('Gradle Build') {
-                sh "cp ${jenkins_home}/application.yml ${env.WORKSPACE}/src/main/resources"
+
+                withCredentials([file(credentialsId: 'properties')]) {
+                    script {
+                        sh "cp ${application.properties} ${env.WORKSPACE}/src/main/resources"
+                    }
+                }
                 sh 'chmod +x gradlew'
                 sh './gradlew clean build'
             }
