@@ -10,8 +10,9 @@ node {
     def prj_type = getCommitType(vars.GIT_COMMIT).substring(1,3)
 
     def branch = env.BRANCH_NAME
+    def jenkins_home= env.JENKINS_HOME
     echo "Branch: ${branch}"
-    echo "Jenkins home: ${env.JENKINS_HOME}"
+
 
     if(prj_type=="BE" && branch=="dev"){
 
@@ -24,6 +25,7 @@ node {
 
         dir("${env.WORKSPACE}") {
             stage ('Gradle Build') {
+                sh 'cp ${jenkins_home}/application.yml ${env.WORKSPACE} '
                 sh 'chmod +x gradlew'
                 sh './gradlew clean build'
             }
@@ -41,7 +43,7 @@ node {
                     echo "Docker Container 실행 중이지 않았음"
                 }
 
-                sh 'docker run -d --name test_cicd -p 8084:8080 test '
+                sh 'docker run -d --name test_cicd -p 8084:8084 test '
             }
             stage ('Finish'){
                sh 'docker rmi $(docker images -f "dangling=true" -q)'
