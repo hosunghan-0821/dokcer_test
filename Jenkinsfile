@@ -23,7 +23,7 @@ node {
             git branch: branch, url:'https://github.com/hosunghan-0821/dokcer_test.git'
         }
         stage('settings'){
-             withCredentials([file(credentialsId: properties, variable: 'CREDENTIALS_FILE_PATH')]) {
+             withCredentials([file(credentialsId: "properties", variable: 'CREDENTIALS_FILE_PATH')]) {
                     def credentialsContent = readFile env.CREDENTIALS_FILE_PATH
 
                     // Credentials 파일의 내용을 출력하거나 원하는 작업을 수행할 수 있습니다.
