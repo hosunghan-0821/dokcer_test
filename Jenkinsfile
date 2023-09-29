@@ -26,7 +26,7 @@ node {
         dir("${env.WORKSPACE}") {
             stage ('Gradle Build') {
 
-                withCredentials([file(credentialsId: 'properties')]) {
+                withCredentials([file(credentialsId: 'properties',variable: 'application.properties')]) {
                     script {
                         sh "cp ${application.properties} ${env.WORKSPACE}/src/main/resources"
                     }
