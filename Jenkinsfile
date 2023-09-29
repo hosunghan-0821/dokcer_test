@@ -22,15 +22,19 @@ node {
        stage('clone') {
             git branch: branch, url:'https://github.com/hosunghan-0821/dokcer_test.git'
         }
+        stage('settings'){
+             withCredentials([file(credentialsId: 'properties',variable: 'application.properties')]) {
+                        script {
+                            sh "cp ${application.properties} ${env.WORKSPACE}/src/main/resources"
+                        }
+                    }
+        }
 
         dir("${env.WORKSPACE}") {
             stage ('Gradle Build') {
 
-                withCredentials([file(credentialsId: 'properties',variable: 'application.properties')]) {
-                    script {
-                        sh "cp ${application.properties} ${env.WORKSPACE}/src/main/resources"
-                    }
-                }
+
+
                 sh 'chmod +x gradlew'
                 sh './gradlew clean build'
             }
