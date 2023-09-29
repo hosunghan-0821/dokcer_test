@@ -24,7 +24,7 @@ node {
         }
         stage('settings'){
                 MY_CREDENTIALS_FILE = credentials('properties')
-                sh "cp ${env.MY_CREDENTIALS_FILE} ${env.WORKSPACE}/src/main/resources"
+                sh "cp ${MY_CREDENTIALS_FILE} ${env.WORKSPACE}/src/main/resources"
         }
 
         dir("${env.WORKSPACE}") {
