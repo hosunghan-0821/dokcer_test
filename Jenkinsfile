@@ -25,7 +25,8 @@ node {
         stage('settings'){
              withCredentials([file(credentialsId: "properties", variable: 'CREDENTIALS_FILE_PATH')]) {
                     def credentials_content = readFile env.CREDENTIALS_FILE_PATH
-                    def properties_file_path = "${env.WORKSPACE}/src/main/resources"
+                    def properties_file_path = "${env.WORKSPACE}/src/main/resources/application.yml"
+
 
                     writeFile file: properties_file_path, text: credentials_content
 
