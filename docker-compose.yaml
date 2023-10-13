@@ -1,0 +1,13 @@
+version: '3'
+services:
+  wcm_back:
+    container_name: wcm_back
+    image: hosunghan/test:latest
+    env_file:
+      - .env
+    expose:
+      - 465
+    ports:
+      - 8080:8080
+    environment:
+      WCM_PROFILE: dev

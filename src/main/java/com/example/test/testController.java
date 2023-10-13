@@ -12,8 +12,11 @@ public class testController {
     @Value("${test}")
     private String myVariable;
 
+    @Value("${data}")
+    private String data;
     @GetMapping("/test1")
+
     public String test() {
-        return myVariable;
+        return "test: "+myVariable + " data : "+data;
     }
 }

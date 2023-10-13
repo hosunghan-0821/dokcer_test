@@ -1,1 +1,2 @@
-java -jar app.jar --test="$test"
+
+java -jar app.jar
